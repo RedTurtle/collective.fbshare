@@ -1,0 +1,21 @@
+	<!--meta property="fb:app_id" content="YOUR_APP_ID" /--> 
+	<meta property="og:type" content="article" /> 
+	<meta property="og:url" content="URL of this object"
+	      tal:attributes="content context/absolute_url" />
+	<meta property="og:site_name" content="Name of site hosting article"
+	      tal:attributes="content context/@@plone_portal_state/portal_title" />
+	<meta property="og:image" content="URL to an image"
+	      tal:condition="view/share_image" tal:attributes="content view/share_image" />
+	<meta property="og:title" content="Name of article"
+	      tal:attributes="content context/Title" />
+	<meta property="og:description" content="Description of object"
+	      tal:attributes="content context/Description" />
+	<meta property="article:published_time" content="DateTime"
+	      tal:condition="view/effective" tal:attributes="content python:context.effective().ISO8601()" />
+	<!--meta property="article:modified_time"   content="DateTime" /--> 
+	<meta property="article:expiration_time" content="DateTime"
+	      tal:condition="view/expires" tal:attributes="content python:context.expires().ISO8601()" />
+	<meta property="article:author" content="URL to Author object"
+	      tal:condition="view/author" tal:attributes="content view/author" />
+	<meta property="article:tag" content="Keyword"
+	      tal:attributes="content python:', '.join(context.Subject())" />

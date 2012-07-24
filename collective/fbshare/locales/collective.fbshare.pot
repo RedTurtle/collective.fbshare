@@ -1,0 +1,57 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2012-07-24 15:36+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: collective.fbshare\n"
+
+#: ../browser/controlpanel.py:34
+msgid "Cancel"
+msgstr ""
+
+#: ../browser/controlpanel.py:30
+msgid "Changes saved"
+msgstr ""
+
+#: ../interfaces.py:19
+msgid "Default image for Open Graph sharing"
+msgstr ""
+
+#: ../browser/controlpanel.py:36
+msgid "Edit cancelled"
+msgstr ""
+
+#: ../browser/controlpanel.py:19
+#: ../profiles/default/controlpanel.xml
+msgid "Open Graph sharing settings"
+msgstr ""
+
+msgid "Provide some additional Open Graph meta tag to your Plone site, so share items on Facebook will be simpler"
+msgstr ""
+
+#: ../browser/controlpanel.py:23
+msgid "Save"
+msgstr ""
+
+#. Default: "Images for Facebook must be at least 50px by 50px (though minimum 200px by 200px is preferred) and have a maximum aspect ratio of 3:1. Supported format are PNG, JPEG and GIF formats."
+#: ../interfaces.py:20
+msgid "help_default_image"
+msgstr ""
+
+#. Default: "Manage general site configuration for Open Graph"
+#: ../browser/controlpanel.py:20
+msgid "help_fbsharing_settings_editform"
+msgstr ""
+

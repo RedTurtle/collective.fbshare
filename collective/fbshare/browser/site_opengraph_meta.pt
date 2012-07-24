@@ -1,0 +1,10 @@
+     <!--meta property="fb:app_id" content="YOUR_APP_ID" /--> 
+     <meta property="og:type" content="website"> 
+     <meta property="og:url"  content="URL of this object"
+	       tal:attributes="content context/@@plone_portal_state/portal_url" /> 
+     <meta property="og:image" content="URL to an image"
+	       tal:condition="view/share_image" tal:attributes="content view/share_image" />
+     <meta property="og:title" content="Name of the site"
+	       tal:attributes="content context/@@plone_portal_state/portal_title" />
+     <meta property="og:description" content="Description of object"
+	       tal:attributes="content python:context.restrictedTraverse('@@plone_portal_state').portal().getProperty('description')" /> 

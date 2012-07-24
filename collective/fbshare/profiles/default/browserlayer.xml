@@ -1,0 +1,4 @@
+<layers>
+    <layer name="collective.fbshare"
+           interface="collective.fbshare.interfaces.IFbShareBrowserLayer" />
+</layers>

@@ -1,0 +1,26 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.fbshare">
+
+  <five:registerPackage package="." />
+  <i18n:registerTranslations directory="locales" />
+
+  <permission
+        id="collective.fbshare.ManageOpenGraphSettings"
+        title="collective.fbshare: Manage Open Graph settings"
+        />
+
+  <include package=".browser" />
+
+  <genericsetup:registerProfile
+      name="default"
+      title="collective.fbshare"
+      directory="profiles/default"
+      description="Provide some additional Open Graph meta tag to your Plone site, so share items on Facebook will be simpler"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+  
+</configure>
