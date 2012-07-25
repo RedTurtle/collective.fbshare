@@ -19,8 +19,8 @@ class ImageChoiceVocabulary(object):
 
     def __call__(self, context):
         
-        terms = [SimpleTerm('custom_image',_(u'Custom image (select one below)')),
-                 SimpleTerm('site_logo',_(u'Use site logo')),
+        terms = [SimpleTerm(u'custom_image',_(u'Custom image (select one below)')),
+                 SimpleTerm(u'site_logo',_(u'Use site logo')),
                  ]
         return SimpleVocabulary(terms)
 

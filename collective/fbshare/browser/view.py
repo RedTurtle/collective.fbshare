@@ -25,5 +25,6 @@ class ShareDefaultImage(BrowserView):
             response.setHeader('Content-Type','image/jpg')
             response.setHeader('Content-Disposition', 'inline; filename=collective.fbshare.default_image.jpg')
             response.write(bytes)
+            return
         # no data? no image
         raise NotFound()

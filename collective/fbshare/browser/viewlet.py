@@ -40,7 +40,7 @@ class OpenGraphMetaViewlet(common.ViewletBase):
         
         registry = queryUtility(IRegistry)
         settings = registry.forInterface(IFbShareSettings, check=False)
-        if settings.image_to_share=='site_logo':
+        if settings.image_to_share==u'site_logo':
             portal = self.portal_state.portal()
             logoName = portal.restrictedTraverse('base_properties').logoName
             return "%s/%s" % (portal_state.portal_url(), logoName)
@@ -81,7 +81,7 @@ class SiteOpenGraphMetaViewlet(common.ViewletBase):
         
         registry = queryUtility(IRegistry)
         settings = registry.forInterface(IFbShareSettings, check=False)
-        if settings.image_to_share=='site_logo':
+        if settings.image_to_share==u'site_logo':
             portal = self.portal_state.portal()
             logoName = portal.restrictedTraverse('base_properties').logoName
             return "%s/%s" % (portal_state.portal_url(), logoName)

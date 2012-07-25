@@ -1,16 +1,19 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1.0'
+version = '0.1.0.dev0'
+
+tests_require = ['plone.app.testing']
 
 setup(name='collective.fbshare',
       version=version,
       description="Provide some additional Open Graph meta tag to your Plone site, so share items on Facebook will be simpler",
-      long_description=open("README.txt").read() + "\n" +
+      long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
+        "Development Status :: 4 - Beta",
         "Framework :: Plone",
         "Framework :: Plone :: 3.3",
         "Framework :: Plone :: 4.0",
@@ -21,12 +24,14 @@ setup(name='collective.fbshare',
       keywords='plone plonegov opengraph facebook',
       author='RedTurtle Technology',
       author_email='sviluppoplone@redturtle.it',
-      url='http://svn.plone.org/svn/collective/',
+      url='https://github.com/RedTurtle/collective.fbshare/',
       license='GPL',
       packages=find_packages(exclude=['ez_setup']),
       namespace_packages=['collective'],
       include_package_data=True,
       zip_safe=False,
+      tests_require=tests_require,
+      extras_require=dict(tests=tests_require),
       install_requires=[
           'setuptools',
           'plone.app.registry',

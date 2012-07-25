@@ -1,5 +1,5 @@
      <!--meta property="fb:app_id" content="YOUR_APP_ID" /--> 
-     <meta property="og:type" content="website"> 
+     <meta property="og:type" content="website" /> 
      <meta property="og:url"  content="URL of this object"
 	       tal:attributes="content context/@@plone_portal_state/portal_url" /> 
      <meta property="og:image" content="URL to an image"

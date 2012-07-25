@@ -21,7 +21,7 @@ class IFbShareSettings(Interface):
                       default=u"You can choose to provide a custom image or use the site logo.\n"
                               u"If you choose a custom image without providing it, it will not provide any og:image meta content."),
         required=True,
-        default='custom_image',
+        default=u'custom_image',
         vocabulary='collective.fbshare.imageChoiceVocabulary',
     )
     
