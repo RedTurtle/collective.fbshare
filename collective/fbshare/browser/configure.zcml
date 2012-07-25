@@ -12,16 +12,14 @@
        name="collective.fbshare"
        for="Products.Archetypes.interfaces.IBaseObject"
 	   layer="collective.fbshare.interfaces.IFbShareBrowserLayer"
-       view="plone.app.layout.globals.interfaces.IViewView"
        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
        permission="zope2.View"
        class=".viewlet.OpenGraphMetaViewlet"
        />
     <browser:viewlet
        name="collective.fbshare"
-       for="Products.CMFCore.interfaces._content.ISiteRoot"
+       for="Products.CMFCore.interfaces.ISiteRoot"
 	   layer="collective.fbshare.interfaces.IFbShareBrowserLayer"
-       view="plone.app.layout.globals.interfaces.IViewView"
        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
        permission="zope2.View"
        class=".viewlet.SiteOpenGraphMetaViewlet"
