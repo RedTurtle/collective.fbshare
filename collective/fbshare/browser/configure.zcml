@@ -10,7 +10,7 @@
 
     <browser:viewlet
        name="collective.fbshare"
-       for="*"
+       for="Products.Archetypes.interfaces.IBaseObject"
 	   layer="collective.fbshare.interfaces.IFbShareBrowserLayer"
        view="plone.app.layout.globals.interfaces.IViewView"
        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"

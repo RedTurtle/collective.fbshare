@@ -15,6 +15,11 @@
 
   <include package=".browser" />
 
+  <utility
+	 name="collective.fbshare.imageChoiceVocabulary"
+	 component=".vocabularies.imageChoiceVocabularyFactory"
+	 />
+
   <genericsetup:registerProfile
       name="default"
       title="collective.fbshare"

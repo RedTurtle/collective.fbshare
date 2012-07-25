@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from zope.component import queryUtility
+from zope.component import queryUtility, getMultiAdapter
+
+from zExceptions import NotFound
 
 from Products.Five.browser import BrowserView
 
@@ -17,11 +19,11 @@ class ShareDefaultImage(BrowserView):
         return settings.default_image
     
     def __call__(self, *args, **kwargs):
-        
         bytes = self.data()
         if bytes:
             response = self.request.response
             response.setHeader('Content-Type','image/jpg')
             response.setHeader('Content-Disposition', 'inline; filename=collective.fbshare.default_image.jpg')
             response.write(bytes)
-        return None
+        # no data? no image
+        raise NotFound()

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-07-24 15:36+0000\n"
+"POT-Creation-Date: 2012-07-25 09:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,8 +25,16 @@ msgstr ""
 msgid "Changes saved"
 msgstr ""
 
+#: ../vocabularies.py:22
+msgid "Custom image (select one below)"
+msgstr ""
+
+#: ../interfaces.py:29
+msgid "Custom image for Open Graph sharing"
+msgstr ""
+
 #: ../interfaces.py:19
-msgid "Default image for Open Graph sharing"
+msgid "Default site image to share"
 msgstr ""
 
 #: ../browser/controlpanel.py:36
@@ -45,13 +53,22 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
+#: ../vocabularies.py:23
+msgid "Use site logo"
+msgstr ""
+
 #. Default: "Images for Facebook must be at least 50px by 50px (though minimum 200px by 200px is preferred) and have a maximum aspect ratio of 3:1. Supported format are PNG, JPEG and GIF formats."
-#: ../interfaces.py:20
+#: ../interfaces.py:30
 msgid "help_default_image"
 msgstr ""
 
 #. Default: "Manage general site configuration for Open Graph"
 #: ../browser/controlpanel.py:20
 msgid "help_fbsharing_settings_editform"
+msgstr ""
+
+#. Default: "You can choose to provide a custom image or use the site logo.\nIf you choose a custom image without providing it, it will not provide any og:image meta content."
+#: ../interfaces.py:20
+msgid "help_image_to_share"
 msgstr ""
 

@@ -1,9 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from zope.component import getMultiAdapter
-
+from zope.component import getMultiAdapter, queryUtility
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+
+from plone.registry.interfaces import IRegistry
+
 from plone.app.layout.viewlets import common
+
+from collective.fbshare.interfaces import IFbShareSettings
 
 class OpenGraphMetaViewlet(common.ViewletBase):
     """Generic OpenGraph share viewlet for contents"""
@@ -15,7 +19,16 @@ class OpenGraphMetaViewlet(common.ViewletBase):
         """
         # BBB: this will change in future, for supporting content related images
         portal_state = getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
-        share_image_view = getMultiAdapter((portal_state.portal(), self.request), name=u'collective.fbshare.default_image')
+        
+        registry = queryUtility(IRegistry)
+        settings = registry.forInterface(IFbShareSettings, check=False)
+        if settings.image_to_share=='site_logo':
+            portal = self.portal_state.portal()
+            logoName = portal.restrictedTraverse('base_properties').logoName
+            return "%s/%s" % (portal_state.portal_url(), logoName)
+        
+        share_image_view = getMultiAdapter((portal_state.portal(), self.request),
+                                           name=u'collective.fbshare.default_image')
         if share_image_view.data():
             return "%s/@@collective.fbshare.default_image" % portal_state.portal_url()
 
@@ -37,14 +50,25 @@ class OpenGraphMetaViewlet(common.ViewletBase):
             if self.context.Creator():
                 return "%s/author/%s" % (portal_state.portal_url(), self.context.Creator())
 
+
 class SiteOpenGraphMetaViewlet(common.ViewletBase):
     """OpenGraph share viewlet for site root"""
     
     index = ViewPageTemplateFile("site_opengraph_meta.pt")
     
     def share_image(self):
-        """Return URL to the image to be used for sharing"""
+        """Return URL to the image to be used for sharing
+        """
         portal_state = getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
-        share_image_view = getMultiAdapter((self.context, self.request), name=u'collective.fbshare.default_image')
+        
+        registry = queryUtility(IRegistry)
+        settings = registry.forInterface(IFbShareSettings, check=False)
+        if settings.image_to_share=='site_logo':
+            portal = self.portal_state.portal()
+            logoName = portal.restrictedTraverse('base_properties').logoName
+            return "%s/%s" % (portal_state.portal_url(), logoName)
+        
+        share_image_view = getMultiAdapter((portal_state.portal(), self.request),
+                                           name=u'collective.fbshare.default_image')
         if share_image_view.data():
             return "%s/@@collective.fbshare.default_image" % portal_state.portal_url()

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-07-24 15:36+0000\n"
+"POT-Creation-Date: 2012-07-25 09:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: Luca Fabbri <keul@redturtle.it>\n"
 "Language-Team: RedTurtle Technology <sviluppoplone@redturtle.it>\n"
@@ -25,9 +25,17 @@ msgstr "Annulla"
 msgid "Changes saved"
 msgstr "Modifiche salvate"
 
+#: ../vocabularies.py:22
+msgid "Custom image (select one below)"
+msgstr "Immagine personalizzata (forniscila sotto)"
+
+#: ../interfaces.py:29
+msgid "Custom image for Open Graph sharing"
+msgstr "Immagine personalizzata per condivisione Open Graph"
+
 #: ../interfaces.py:19
-msgid "Default image for Open Graph sharing"
-msgstr "Immagine predefinita per condivisione Open Graph"
+msgid "Default site image to share"
+msgstr "Immagine predefinita del sito per condivisione"
 
 #: ../browser/controlpanel.py:36
 msgid "Edit cancelled"
@@ -45,8 +53,12 @@ msgstr "Fornisce qualche meta tag addizionale in formato Open Graph, così la co
 msgid "Save"
 msgstr "Salva"
 
+#: ../vocabularies.py:23
+msgid "Use site logo"
+msgstr "Usa il logo del sito"
+
 #. Default: "Images for Facebook must be at least 50px by 50px (though minimum 200px by 200px is preferred) and have a maximum aspect ratio of 3:1. Supported format are PNG, JPEG and GIF formats."
-#: ../interfaces.py:20
+#: ../interfaces.py:30
 msgid "help_default_image"
 msgstr "Le immagini per Facebook devono essere almeno 50px per 50px (anche se sarebbe preferibile 200px per 200px) ed avere un rapporto di 3:1. Sono supportati i formati PNG, JPEG and GIF."
 
@@ -54,4 +66,11 @@ msgstr "Le immagini per Facebook devono essere almeno 50px per 50px (anche se sa
 #: ../browser/controlpanel.py:20
 msgid "help_fbsharing_settings_editform"
 msgstr "Gestione di importazioni generali per la configurazione di Open Graph"
+
+#. Default: "You can choose to provide a custom image or use the site logo.\nIf you choose a custom image without providing it, it will not provide any og:image meta content."
+#: ../interfaces.py:20
+msgid "help_image_to_share"
+msgstr ""
+"Puoi scegliere se fornire un'immagine personalizzata o usate il logo del sito.\n"
+"Se scegli un'immagine personalizzata senza fornirla, non verrà fornito nessun meta tag og:image."
 
