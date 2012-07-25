@@ -28,6 +28,14 @@ class TestViewlet(BaseTestCase):
         request.set('ACTUAL_URL', 'http://nohost/plone')
         self.assertTrue('<meta property="og:type" content="website" />' in portal())
 
+    def test_viewlet_registered_for_site_default_page(self):
+        portal = self.layer['portal']
+        request = self.layer['request']
+        page = portal.page
+        portal.manage_addProperty('default_page', 'page', 'string')
+        request.set('ACTUAL_URL', 'http://nohost/plone/page')
+        self.assertTrue('<meta property="og:type" content="website" />' in page())
+
     def test_viewlet_registered_for_content(self):
         portal = self.layer['portal']
         request = self.layer['request']
