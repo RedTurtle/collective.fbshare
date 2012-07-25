@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 
+from Acquisition import aq_parent, aq_inner
+
 from zope.component import getMultiAdapter, queryUtility
+
+from Products.CMFCore.utils import getToolByName
+from Products.CMFCore.interfaces import ISiteRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from plone.registry.interfaces import IRegistry
@@ -13,6 +18,19 @@ class OpenGraphMetaViewlet(common.ViewletBase):
     """Generic OpenGraph share viewlet for contents"""
 
     index = ViewPageTemplateFile("opengraph_meta.pt")
+    site_template = ViewPageTemplateFile("site_opengraph_meta.pt")
+    
+    def _isPortalDefaultView(self):
+        context = self.context
+        if ISiteRoot.providedBy(aq_parent(aq_inner(context))):
+            putils = getToolByName(context, 'plone_utils')
+            return putils.isDefaultPage(context)
+        return False
+    
+    def render(self):
+        if self._isPortalDefaultView():
+            return self.site_template()
+        return self.index()
 
     def share_image(self):
         """Return URL to the image to be used for sharing
