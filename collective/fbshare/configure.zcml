@@ -27,5 +27,13 @@
       description="Provide some additional Open Graph meta tag to your Plone site, so share items on Facebook will be simpler"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
-  
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="collective.fbshare uninstall"
+      directory="profiles/uninstall"
+      description="Uninstall collective.fbshare"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
 </configure>

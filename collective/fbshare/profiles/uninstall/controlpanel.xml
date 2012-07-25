@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<object name="portal_controlpanel"
+        xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        i18n:domain="collective.fbshare">
+
+    <configlet
+        title="Open Graph sharing settings"
+        action_id="opengraph-sharing-settings"
+        appId="collective.fbshare"
+        category="Products"
+        remove="True">
+            <permission>collective.fbshare: Manage Open Graph settings</permission>
+    </configlet>
+
+</object>

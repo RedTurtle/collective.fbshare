@@ -1,0 +1,8 @@
+<registry>
+    <record interface="collective.fbshare.interfaces.IFbShareSettings"
+	        field="image_to_share"
+            delete="True"/>
+    <record interface="collective.fbshare.interfaces.IFbShareSettings"
+	        field="default_image"
+            delete="True"/>
+</registry>
