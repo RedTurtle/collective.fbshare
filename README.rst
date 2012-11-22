@@ -86,11 +86,18 @@ Tested on:
 * Plone 4.2
 * Plone 3.3
 
-On Plone 3.3 you need to configure properly `plone.app.registry`__ dependencies and upgrade the default version used of
-`plone.z3cform`__.
+On Plone 3.3 you need to configure properly `plone.app.registry`__ dependencies and upgrade
+the default version used of `plone.z3cform`__.
 
 __ http://pypi.python.org/pypi/plone.app.registry
 __ http://pypi.python.org/pypi/plone.z3cform
+
+Other similar product
+=====================
+
+There's another Plone package (`collective.opengraph`__) that will give you Open Graph support.
+
+We are planning to make collective.fbshare based on it. 
 
 Credits
 =======

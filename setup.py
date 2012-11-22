@@ -1,13 +1,14 @@
 from setuptools import setup, find_packages
 import os
 
-version = '0.1.1.dev0'
+version = '0.2.0.dev0'
 
 tests_require = ['plone.app.testing']
 
 setup(name='collective.fbshare',
       version=version,
-      description="Provide some additional Open Graph meta tag to your Plone site, so share items on Facebook will be simpler",
+      description="Provide some additional Open Graph meta tag to your Plone site, "
+                  "so share items on Facebook will be simpler",
       long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from
