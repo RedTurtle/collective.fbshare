@@ -89,7 +89,7 @@ msgstr "Le immagini per Facebook devono essere almeno 50px per 50px (anche se sa
 #. Default: "Manage general site configuration for Open Graph"
 #: ../browser/controlpanel.py:20
 msgid "help_fbsharing_settings_editform"
-msgstr "Gestione di importazioni generali per la configurazione di Open Graph"
+msgstr "Gestione di impostazioni generali per la configurazione di Open Graph"
 
 #. Default: "You can choose to provide a custom image or use the site logo.\nIf you choose a custom image without providing it, it will not provide any og:image meta content."
 #: ../interfaces.py:20
