@@ -20,6 +20,12 @@
 	 component=".vocabularies.imageChoiceVocabularyFactory"
 	 />
 
+  <utility
+	 name="collective.fbshare.imageSizeVocabulary"
+	 component=".vocabularies.imageSizeVocabularyFactory"
+	 />
+
+
   <genericsetup:registerProfile
       name="default"
       title="collective.fbshare"
@@ -35,5 +41,7 @@
       description="Uninstall collective.fbshare"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
+
+  <include file="upgrades.zcml" />
 
 </configure>

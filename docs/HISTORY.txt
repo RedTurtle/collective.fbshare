@@ -4,8 +4,12 @@ Changelog
 0.2.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Use of site logo feature for ``og:image`` was broken
+  [keul]
+- i18n fixes
+  [keul]
+- added support for content's own image (also with support for *collective.contentleadimage*)
+  [keul]
 
 0.1.0 (2012-07-25)
 ------------------

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2012-07-25 14:41+0000\n"
+"POT-Creation-Date: 2012-11-26 16:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,15 @@ msgstr ""
 msgid "Changes saved"
 msgstr ""
 
-#: ../vocabularies.py:22
+#: ../interfaces.py:47
+msgid "Content image size to be used"
+msgstr ""
+
+#: ../interfaces.py:38
+msgid "Contents use own image"
+msgstr ""
+
+#: ../vocabularies.py:24
 msgid "Custom image (select one below)"
 msgstr ""
 
@@ -35,6 +43,10 @@ msgstr ""
 
 #: ../interfaces.py:19
 msgid "Default site image to share"
+msgstr ""
+
+#: ../vocabularies.py:37
+msgid "Dont' resize images"
 msgstr ""
 
 #: ../browser/controlpanel.py:36
@@ -53,8 +65,18 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: ../vocabularies.py:23
+#: ../vocabularies.py:25
 msgid "Use site logo"
+msgstr ""
+
+#. Default: "Resized version of contents images to be used."
+#: ../interfaces.py:48
+msgid "help_content_image_size"
+msgstr ""
+
+#. Default: "If checked, content types that behave an image field will provide the image in the og:image attribute.\nThe product contentleadimage is also supported."
+#: ../interfaces.py:39
+msgid "help_content_use_own_image"
 msgstr ""
 
 #. Default: "Images for Facebook must be at least 50px by 50px (though minimum 200px by 200px is preferred) and have a maximum aspect ratio of 3:1. Supported format are PNG, JPEG and GIF formats."

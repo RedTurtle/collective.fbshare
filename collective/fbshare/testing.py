@@ -18,12 +18,17 @@ class FbShare(PloneSandboxLayer):
     def setUpZope(self, app, configurationContext):
         # Load ZCML for this package
         import collective.fbshare
+        import collective.contentleadimage
         xmlconfig.file('configure.zcml',
                        collective.fbshare,
+                       context=configurationContext)
+        xmlconfig.file('configure.zcml',
+                       collective.contentleadimage,
                        context=configurationContext)
 
     def setUpPloneSite(self, portal):
         applyProfile(portal, 'collective.fbshare:default')
+        applyProfile(portal, 'collective.contentleadimage:default')
         setRoles(portal, TEST_USER_ID, ['Member', 'Manager'])
 
 

@@ -34,3 +34,20 @@ class IFbShareSettings(Interface):
             required=False,
     )
 
+    content_use_own_image = schema.Bool(
+            title=_(u"Contents use own image"),
+            description=_('help_content_use_own_image',
+                          default=u"If checked, content types that behave an image field will provide the image in the og:image attribute.\n"
+                                  u"The product contentleadimage is also supported."),
+            default=True,
+            required=False,
+    )
+
+    content_image_size = schema.Choice(
+        title=_(u"Content image size to be used"),
+        description=_('help_content_image_size',
+                      default=u"Resized version of contents images to be used."),
+        required=True,
+        default=u'mini',
+        vocabulary='collective.fbshare.imageSizeVocabulary',
+    )

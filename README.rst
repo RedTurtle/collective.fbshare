@@ -7,11 +7,11 @@ Are you commonly sharing contents from your Plone site or a site page to a `Face
 
 __ http://www.facebook.com/
 
-When you use the nice Facebook sharing interface, you have a simple way to customize additional data for the item that
-will be published (mainly: choose a proper image from the remote page).
+When you use the nice Facebook sharing interface, you have a simple way to customize additional data for the item
+that will be published (mainly: choose a proper image from the remote page).
 
-However when trying to do this automatically (e.g: you are publishing the link in a `Twitter`__ account that also feed
-a Facebook page) Facebook is choosing an image for you... and often this is not the image you want.
+However when trying to do this automatically (e.g: you are publishing the link in a `Twitter`__ account that also
+feed a Facebook page) Facebook is choosing an image for you... and often this is not the image you want.
 
 __ http://twitter.com/
 
@@ -73,10 +73,11 @@ From there you can:
 
 * provide a custom image content to be used as ``og:image``
 * choose to use the site's logo as ``og:image``
-
-.. Note::
-   Future release will probably handle images taken from the content. Right now we are always providing the
-   global defined image.
+* enable support for content images, this mean that content types with image field will be able to
+  provide that image instead of a global ones.
+  Also supported `collective.contentleadimage`__
+  
+  __ http://plone.org/products/content-lead-image/
 
 Dependencies
 ============
@@ -95,9 +96,11 @@ __ http://pypi.python.org/pypi/plone.z3cform
 Other similar product
 =====================
 
-There's another Plone package (`collective.opengraph`__) that will give you Open Graph support.
+There's another Plone package: that will give you Open Graph support: `collective.opengraph`__
 
-We are planning to make collective.fbshare based on it. 
+__ http://plone.org/products/collective.opengraph
+
+We are planning to make collective.fbshare based on it.
 
 Credits
 =======

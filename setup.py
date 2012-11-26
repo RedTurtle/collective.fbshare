@@ -3,7 +3,7 @@ import os
 
 version = '0.2.0.dev0'
 
-tests_require = ['plone.app.testing']
+tests_require = ['plone.app.testing', 'collective.contentleadimage']
 
 setup(name='collective.fbshare',
       version=version,
@@ -14,7 +14,7 @@ setup(name='collective.fbshare',
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
         "Framework :: Plone",
         "Framework :: Plone :: 3.3",
         "Framework :: Plone :: 4.0",
@@ -32,7 +32,7 @@ setup(name='collective.fbshare',
       include_package_data=True,
       zip_safe=False,
       tests_require=tests_require,
-      extras_require=dict(tests=tests_require),
+      extras_require=dict(test=tests_require),
       install_requires=[
           'setuptools',
           'plone.app.registry',

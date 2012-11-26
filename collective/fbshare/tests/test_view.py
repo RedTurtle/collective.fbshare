@@ -22,8 +22,10 @@ class TestView(BaseTestCase):
     
     def setUp(self):
         self.markRequestWithLayer()
-        self.view = getMultiAdapter((self.layer['portal'], self.layer['request']), name=u"collective.fbshare.default_image")
-    
+        self.view = getMultiAdapter((self.layer['portal'],
+                                     self.layer['request']),
+                                     name=u"collective.fbshare.default_image")
+
     def test_notfoud(self):
         portal = self.layer['portal']
         request = self.layer['request']

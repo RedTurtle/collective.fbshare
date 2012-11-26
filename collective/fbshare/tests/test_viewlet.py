@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import os.path
+
 from zope.component import getMultiAdapter
 
 from DateTime import DateTime
@@ -20,7 +22,6 @@ class TestViewlet(BaseTestCase):
         portal = self.layer['portal']
         self.markRequestWithLayer()
         portal.invokeFactory(type_name='Document', id='page', title='A good article')
-        #portal.portal_workflow.doActionFor(portal.page, 'publish')
     
     def test_viewlet_registered_for_site(self):
         portal = self.layer['portal']
@@ -95,3 +96,51 @@ class TestViewlet(BaseTestCase):
         settings.image_to_share = u'custom_image'
         settings.default_image = 'FOO'
         self.assertTrue('<meta property="og:image" content="http://nohost/plone/@@collective.fbshare.default_image"' in portal())
+
+
+class TestViewletOnContent(BaseTestCase):
+
+    layer = FBSHARE_INTEGRATION_TESTING
+    
+    def setUp(self):
+        portal = self.layer['portal']
+        self.markRequestWithLayer()
+        portal.invokeFactory(type_name='News Item', id='news', title='A site news')
+        portal.news.edit(image=open(os.path.join(os.path.dirname(__file__), 'plone-icon.png')))
+        portal.invokeFactory(type_name='Document', id='page', title='A good article')
+        portal.page.edit(leadImage=open(os.path.join(os.path.dirname(__file__), 'plone-icon.png')))
+
+    def test_content_image_disabled(self):
+        portal = self.layer['portal']
+        request = self.layer['request']
+        request.set('ACTUAL_URL', 'http://nohost/plone/news')
+        settings = self.getSettings()
+        settings.content_use_own_image = False
+        self.assertFalse('<meta property="og:image"' in portal.news())
+
+    def test_content_image_simple(self):
+        portal = self.layer['portal']
+        request = self.layer['request']
+        request.set('ACTUAL_URL', 'http://nohost/plone/news')
+        settings = self.getSettings()
+        settings.content_use_own_image = True
+        self.assertTrue('<meta property="og:image" content="http://nohost/plone/news/image_mini"' in portal.news())
+
+    def test_content_image_custom_resize(self):
+        portal = self.layer['portal']
+        request = self.layer['request']
+        request.set('ACTUAL_URL', 'http://nohost/plone/news')
+        settings = self.getSettings()
+        settings.content_use_own_image = True
+        settings.content_image_size = 'icon'
+        self.assertTrue('<meta property="og:image" content="http://nohost/plone/news/image_icon"' in portal.news())
+        settings.content_image_size = ''
+        self.assertTrue('<meta property="og:image" content="http://nohost/plone/news/image"' in portal.news())
+
+    def test_contentleadimage_support(self):
+        portal = self.layer['portal']
+        request = self.layer['request']
+        request.set('ACTUAL_URL', 'http://nohost/plone/page')
+        settings = self.getSettings()
+        settings.content_use_own_image = True
+        self.assertTrue('<meta property="og:image" content="http://nohost/plone/page/leadImage_mini"' in portal.page())
