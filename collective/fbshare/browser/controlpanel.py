@@ -12,7 +12,7 @@ from collective.fbshare import messageFactory as _
 
 
 class FbSharingSettingsControlPanelEditForm(controlpanel.RegistryEditForm):
-    """Media settings form.
+    """Open graph settings form.
     """
     schema = IFbShareSettings
     id = "FbSharingSettingsEditForm"
