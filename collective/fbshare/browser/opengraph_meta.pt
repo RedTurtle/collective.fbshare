@@ -1,7 +1,7 @@
 	<!--meta property="fb:app_id" content="YOUR_APP_ID" /--> 
 	<meta property="og:type" content="article" /> 
 	<meta property="og:url" content="URL of this object"
-	      tal:attributes="content context/absolute_url" />
+	      tal:attributes="content context/@@plone_context_state/canonical_object_url" />
 	<meta property="og:site_name" content="Name of site hosting article"
 	      tal:attributes="content context/@@plone_portal_state/portal_title" />
 	<meta property="og:image" content="URL to an image"
