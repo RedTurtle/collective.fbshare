@@ -64,6 +64,7 @@ class OpenGraphMetaViewlet(SiteOpenGraphMetaViewlet):
         """Return URL to the image to be used for sharing
         """
         portal_state = getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
+        context_state = getMultiAdapter((self.context, self.request), name=u'plone_context_state')
         registry = queryUtility(IRegistry)
         settings = registry.forInterface(IFbShareSettings, check=False)
 
@@ -71,7 +72,7 @@ class OpenGraphMetaViewlet(SiteOpenGraphMetaViewlet):
             # Stolen from collective.opengraph
             img_size = settings.content_image_size
             context = aq_inner(self.context)
-            obj_url = context.absolute_url()
+            obj_url = context_state.canonical_object_url()
             if hasattr(context, 'getField'):
                 field = self.context.getField('image')
                 if not field and HAS_LEADIMAGE:
