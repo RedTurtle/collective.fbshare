@@ -1,3 +1,5 @@
+Add new meta tags to you Plone site, for better controlling how your items are **shared on Facebook**. 
+
 .. contents:: **Table of contents**
 
 Introduction
@@ -9,7 +11,6 @@ __ http://www.facebook.com/
 
 When you use the nice Facebook sharing interface, you have a simple way to customize additional data for the item
 that will be published (mainly: choose a proper image from the remote page).
-
 However when trying to do this automatically (e.g: you are publishing the link in a `Twitter`__ account that also
 feed a Facebook page) Facebook is choosing an image for you... and often this is not the image you want.
 
@@ -84,8 +85,9 @@ Dependencies
 
 Tested on:
 
-* Plone 4.2
 * Plone 3.3
+* Plone 4.2
+* Plone 4.3
 
 On Plone 3.3 you need to configure properly `plone.app.registry`__ dependencies and upgrade
 the default version used of `plone.z3cform`__.
