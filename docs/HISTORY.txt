@@ -4,8 +4,10 @@ Changelog
 0.2.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- When visiting a folderish content refers to folder URL, not default
+  page URL (close `#2`__) [jnachtigall]
 
+  __ https://github.com/RedTurtle/collective.fbshare/pull/2
 
 0.2.0 (2012-11-26)
 ------------------

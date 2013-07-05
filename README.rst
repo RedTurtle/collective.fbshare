@@ -93,14 +93,12 @@ the default version used of `plone.z3cform`__.
 __ http://pypi.python.org/pypi/plone.app.registry
 __ http://pypi.python.org/pypi/plone.z3cform
 
-Other similar product
-=====================
+Similar product
+===============
 
 There's another Plone package: that will give you Open Graph support: `collective.opengraph`__
 
 __ http://plone.org/products/collective.opengraph
-
-We are planning to make collective.fbshare based on it.
 
 Credits
 =======

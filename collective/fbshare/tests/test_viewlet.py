@@ -144,3 +144,16 @@ class TestViewletOnContent(BaseTestCase):
         settings = self.getSettings()
         settings.content_use_own_image = True
         self.assertTrue('<meta property="og:image" content="http://nohost/plone/page/leadImage_mini"' in portal.page())
+
+    def test_default_folder_page(self):
+        portal = self.layer['portal']
+        request = self.layer['request']
+        portal.invokeFactory(type_name='Folder', id='folder', title='A folder')
+        portal.folder.invokeFactory(type_name='Document', id='page', title='Home')
+        portal.folder.setDefaultPage(portal.folder.page.getId())
+        #portal.folder.setLayout(portal.folder.page.getId())
+        request.set('ACTUAL_URL', 'http://nohost/plone/folder')
+        request.set('URL', 'http://nohost/plone/folder')
+        home = portal.folder.restrictedTraverse('page')
+        self.assertTrue('<meta property="og:title" content="Home"' in home())
+        self.assertTrue('<meta property="og:url" content="http://nohost/plone/folder"' in home())
