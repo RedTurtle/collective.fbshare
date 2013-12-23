@@ -7,7 +7,7 @@ tests_require = ['plone.app.testing', 'collective.contentleadimage']
 
 setup(name='collective.fbshare',
       version=version,
-      description="Provide some additional Open Graph meta tag to your Plone site, "
+      description="Provide some additional Open Graph meta tag in your Plone site, "
                   "so share items on Facebook will be simpler",
       long_description=open("README.rst").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
