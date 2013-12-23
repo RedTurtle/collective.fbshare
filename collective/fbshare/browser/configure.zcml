@@ -1,6 +1,7 @@
 <configure 
    xmlns="http://namespaces.zope.org/zope"
    xmlns:browser="http://namespaces.zope.org/browser"
+   xmlns:zcml="http://namespaces.zope.org/zcml"
    i18n_domain="collective.fbshare">
 
     <browser:resource
@@ -11,7 +12,16 @@
     <browser:viewlet
        name="collective.fbshare"
        for="Products.Archetypes.interfaces.IBaseObject"
-	   layer="collective.fbshare.interfaces.IFbShareBrowserLayer"
+       layer="collective.fbshare.interfaces.IFbShareBrowserLayer"
+       manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
+       permission="zope2.View"
+       class=".viewlet.OpenGraphMetaViewlet"
+       />
+    <browser:viewlet
+       zcml:condition="installed plone.dexterity"
+       name="collective.fbshare"
+       for="plone.dexterity.interfaces.IDexterityContent"
+       layer="collective.fbshare.interfaces.IFbShareBrowserLayer"
        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
        permission="zope2.View"
        class=".viewlet.OpenGraphMetaViewlet"
@@ -19,7 +29,7 @@
     <browser:viewlet
        name="collective.fbshare"
        for="Products.CMFCore.interfaces.ISiteRoot"
-	   layer="collective.fbshare.interfaces.IFbShareBrowserLayer"
+       layer="collective.fbshare.interfaces.IFbShareBrowserLayer"
        manager="plone.app.layout.viewlets.interfaces.IHtmlHead"
        permission="zope2.View"
        class=".viewlet.SiteOpenGraphMetaViewlet"
@@ -28,8 +38,8 @@
     <browser:page
        name="collective.fbshare.default_image"
        for="Products.CMFCore.interfaces._content.ISiteRoot"
-	   class=".view.ShareDefaultImage"
-	  permission="zope2.View"
+       class=".view.ShareDefaultImage"
+       permission="zope2.View"
       />
 
     <!-- Control panel -->

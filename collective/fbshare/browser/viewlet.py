@@ -72,23 +72,27 @@ class OpenGraphMetaViewlet(SiteOpenGraphMetaViewlet):
                 field = self.context.getField('image')
                 if not field and HAS_LEADIMAGE:
                     field = context.getField(IMAGE_FIELD_NAME)
-    
-                if field and field.get_size(context) > 0:
-                    if img_size:
-                        return u'%s/%s_%s' % (obj_url, field.getName(), img_size)
+                if field and field.get_size(context) > 0 and img_size:
+                    return u'%s/%s_%s' % (obj_url, field.getName(), img_size)
                     return u'%s/%s' % (obj_url, field.getName())
-        
+            elif hasattr(context, 'image'):
+                # maybe a dexterity content type
+                if context.image.size > 0 and img_size:
+                    return u'%s/@@images/image/%s' % (obj_url, img_size)
+
         return SiteOpenGraphMetaViewlet.share_image(self)
-        
+
     def effective(self):
-        context = self.context
-        effectiveDate = context.getField('effectiveDate').get(context)
-        return effectiveDate or None
+        return self.context.effective() or None
 
     def expires(self):
-        context = self.context
-        expirationDate = context.getField('expirationDate').get(context)
-        return expirationDate or None
+        return self.context.expires() or None
+
+    def modified(self):
+        tools = getMultiAdapter((self.context, self.request), name=u'plone_tools')
+        properties_tool = tools.properties()
+        if properties_tool.site_properties.allowAnonymousViewAbout:
+            return self.context.modified() or None
 
     def author(self):
         tools = getMultiAdapter((self.context, self.request), name=u'plone_tools')
