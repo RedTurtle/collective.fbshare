@@ -177,3 +177,18 @@ class TestViewletOnContent(BaseTestCase):
         home = portal.folder.restrictedTraverse('page')
         self.assertTrue('<meta property="og:title" content="Home"' in home())
         self.assertTrue('<meta property="og:url" content="http://nohost/plone/folder"' in home())
+
+    def test_tag(self):
+        portal = self.layer['portal']
+        request = self.layer['request']
+        request.set('ACTUAL_URL', 'http://nohost/plone/page')
+        settings = self.getSettings()
+        settings.content_use_own_image = True
+        self.assertFalse('<meta property="article:tag"' in portal.page())
+        portal.page.edit(subject=['tag 1'])
+        self.assertTrue('<meta property="article:tag" content="tag 1"' in portal.page())
+        portal.page.edit(subject=['tag 1', 'tag2'])
+        self.assertTrue('<meta property="article:tag" content="tag 1"' in portal.page())
+        self.assertTrue('<meta property="article:tag" content="tag2"' in portal.page())
+
+

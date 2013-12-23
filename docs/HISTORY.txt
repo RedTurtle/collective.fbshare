@@ -9,6 +9,7 @@ Changelog
 - Added ``og:image:height`` and ``og:image:width`` when a (resized)
   content image is used [keul]
 - Coexistence with *sc.social.like* [keul]
+- Properly handle ``article:tag`` as array [keul]
 
 0.2.1 (2013-07-05)
 ------------------
