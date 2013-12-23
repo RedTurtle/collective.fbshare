@@ -35,6 +35,9 @@
        class=".viewlet.SiteOpenGraphMetaViewlet"
        />
 
+    <include package=".sc_social_like"
+	    zcml:condition="installed sc.social.like" />
+
     <browser:page
        name="collective.fbshare.default_image"
        for="Products.CMFCore.interfaces._content.ISiteRoot"

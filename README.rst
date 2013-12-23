@@ -67,7 +67,7 @@ When sharing site content's you'll get:
     List of content tags
 
 About images
-============
+------------
 
 In the site control panel you can access a new configuration panel named "*Open Graph sharing settings*".
 From there you can:
@@ -79,6 +79,16 @@ From there you can:
   Also supported `collective.contentleadimage`__
   
   __ http://plone.org/products/content-lead-image/
+
+Coexistence with sc.social.like
+===============================
+
+Another very common plugin that add ``meta`` tag in Plone Pages is `sc.social.like`__.
+
+As adding duplicate meta tag is reported as an error by Facebook verification, *collective.fbshare* will
+hide some of the *sc.social.like* HTML elements when both products are installed.
+
+__ http://plone.org/products/sc.social.like
 
 Dependencies
 ============
@@ -105,13 +115,19 @@ __ http://plone.org/products/collective.opengraph
 Credits
 =======
 
-Developed with the support of `S. Anna Hospital, Ferrara`__;
-S. Anna Hospital supports the `PloneGov initiative`__.
+Developed with the support of:
 
-.. image:: http://www.ospfe.it/ospfe-logo.jpg 
+* `S. Anna Hospital, Ferrara`__
+  
+  .. image:: http://www.ospfe.it/ospfe-logo.jpg 
    :alt: S. Anna Hospital logo
+  
+* `Regione Emilia Romagna`__
+
+All of them supports the `PloneGov initiative`__.
 
 __ http://www.ospfe.it/
+__ http://www.regione.emilia-romagna.it/
 __ http://www.plonegov.it/
 
 Authors

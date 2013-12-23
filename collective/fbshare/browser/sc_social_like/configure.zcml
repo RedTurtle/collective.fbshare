@@ -1,0 +1,19 @@
+<configure 
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   xmlns:zcml="http://namespaces.zope.org/zcml"
+   i18n_domain="collective.fbshare">
+
+   <include package="sc.social.like" />
+
+  <!-- Metadata -->
+  <browser:page
+    name="facebook-plugin"
+    for="*"
+    class=".fbplugin.PluginView"
+    layer="collective.fbshare.interfaces.IFbShareBrowserLayer"
+    allowed_interface="sc.social.like.plugins.interfaces.IPluginView"
+    permission="zope2.View"
+    />
+
+</configure>

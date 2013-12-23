@@ -4,9 +4,17 @@ from zope.interface import Interface
 from zope import schema
 
 from collective.fbshare import messageFactory as _
+from collective.fbshare import logger
+
+# We customize some of the sc.social.like behavior in this way
+try:
+    from sc.social.like.interfaces import ISocialLikeLayer as BaseLayerInterface
+    logger.info('sc.social.like found. collective.fbshare will override Facebook OpenGraph meta')
+except ImportError:
+    from zope.interface import Interface as BaseLayerInterface
 
 
-class IFbShareBrowserLayer(Interface):
+class IFbShareBrowserLayer(BaseLayerInterface):
     """Marker interface for collective.fbshare products layer"""
 
 
