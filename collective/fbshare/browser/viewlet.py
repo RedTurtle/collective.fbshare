@@ -1,23 +1,19 @@
 # -*- coding: utf-8 -*-
 
 from Acquisition import aq_parent, aq_inner
-
-from zope.component import getMultiAdapter, queryUtility
-
-from Products.CMFCore.utils import getToolByName
 from Products.CMFCore.interfaces import ISiteRoot
+from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from plone.registry.interfaces import IRegistry
+from collective.fbshare.interfaces import IFbShareSettings
 from plone.app.layout.viewlets import common
+from plone.registry.interfaces import IRegistry
+from zope.component import getMultiAdapter, queryUtility
 
 HAS_LEADIMAGE = True
 try:
     from collective.contentleadimage.config import IMAGE_FIELD_NAME
 except:
     HAS_LEADIMAGE = False
-
-from collective.fbshare.interfaces import IFbShareSettings
 
 class SiteOpenGraphMetaViewlet(common.ViewletBase):
     """OpenGraph share viewlet for site root"""

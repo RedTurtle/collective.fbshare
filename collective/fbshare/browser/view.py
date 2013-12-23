@@ -1,14 +1,11 @@
 # -*- coding: utf-8 -*-
 
+from collective.fbshare.interfaces import IFbShareSettings
+from plone.registry.interfaces import IRegistry
+from Products.Five.browser import BrowserView
+from zExceptions import NotFound
 from zope.component import queryUtility, getMultiAdapter
 
-from zExceptions import NotFound
-
-from Products.Five.browser import BrowserView
-
-from plone.registry.interfaces import IRegistry
-
-from collective.fbshare.interfaces import IFbShareSettings
 
 class ShareDefaultImage(BrowserView):
     """Return a bytestream with the default image"""
