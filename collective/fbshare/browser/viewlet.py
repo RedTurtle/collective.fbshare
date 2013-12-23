@@ -8,6 +8,7 @@ from collective.fbshare.interfaces import IFbShareSettings
 from plone.app.layout.viewlets import common
 from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter, queryUtility
+from plone.memoize.view import memoize
 
 HAS_LEADIMAGE = True
 try:
@@ -19,7 +20,7 @@ class SiteOpenGraphMetaViewlet(common.ViewletBase):
     """OpenGraph share viewlet for site root"""
     
     index = ViewPageTemplateFile("site_opengraph_meta.pt")
-    
+
     def share_image(self):
         """Return URL to the image to be used for sharing
         """
@@ -56,6 +57,27 @@ class OpenGraphMetaViewlet(SiteOpenGraphMetaViewlet):
             return self.site_template()
         return self.index()
 
+    @property
+    @memoize
+    def content_image_size(self):
+        """Return an width, height dict with content image settings
+        Return an empty dict if no resize is enabled
+        """
+        registry = queryUtility(IRegistry)
+        settings = registry.forInterface(IFbShareSettings, check=False)
+        wanted_size = settings.content_image_size
+        if not wanted_size:
+            return {}
+        portal_properties = getMultiAdapter((self.context, self.request), name=u'plone_tools').properties()
+        imaging_properties = getattr(portal_properties, 'imaging_properties', None)
+        if not imaging_properties:
+            return {}
+        for size_name, size in [x.split(' ') for x in imaging_properties.allowed_sizes]:
+             if size_name==wanted_size:
+                 size = size.split(':')
+                 return {'width': size[0], 'height': size[1]}
+        return {}
+
     def share_image(self):
         """Return URL to the image to be used for sharing
         """
@@ -72,8 +94,9 @@ class OpenGraphMetaViewlet(SiteOpenGraphMetaViewlet):
                 field = self.context.getField('image')
                 if not field and HAS_LEADIMAGE:
                     field = context.getField(IMAGE_FIELD_NAME)
-                if field and field.get_size(context) > 0 and img_size:
-                    return u'%s/%s_%s' % (obj_url, field.getName(), img_size)
+                if field and field.get_size(context) > 0:
+                    if img_size:
+                        return u'%s/%s_%s' % (obj_url, field.getName(), img_size)
                     return u'%s/%s' % (obj_url, field.getName())
             elif hasattr(context, 'image'):
                 # maybe a dexterity content type
@@ -83,10 +106,10 @@ class OpenGraphMetaViewlet(SiteOpenGraphMetaViewlet):
         return SiteOpenGraphMetaViewlet.share_image(self)
 
     def effective(self):
-        return self.context.effective() or None
+        return self.context.EffectiveDate() and self.context.EffectiveDate() != 'None'
 
     def expires(self):
-        return self.context.expires() or None
+        return self.context.ExpirationDate() and self.context.ExpirationDate() != 'None'
 
     def modified(self):
         tools = getMultiAdapter((self.context, self.request), name=u'plone_tools')

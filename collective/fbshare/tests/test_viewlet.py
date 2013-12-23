@@ -61,6 +61,15 @@ class TestViewlet(BaseTestCase):
         page.edit(expirationDate=DateTime())
         self.assertTrue('<meta property="article:expiration_time"' in page())
 
+    def test_modification_date(self):
+        portal = self.layer['portal']
+        request = self.layer['request']
+        request.set('ACTUAL_URL', 'http://nohost/plone/page')
+        page = portal.page
+        self.assertFalse('<meta property="article:modified_time"' in page())
+        portal.portal_properties.site_properties.allowAnonymousViewAbout = True
+        self.assertTrue('<meta property="article:modified_time"' in page())
+
     def test_user_profile_link(self):
         portal = self.layer['portal']
         request = self.layer['request']
@@ -134,8 +143,19 @@ class TestViewletOnContent(BaseTestCase):
         settings.content_use_own_image = True
         settings.content_image_size = 'icon'
         self.assertTrue('<meta property="og:image" content="http://nohost/plone/news/image_icon"' in portal.news())
+        self.assertTrue('<meta property="og:image:height" content="32"' in portal.news())
+        self.assertTrue('<meta property="og:image:width" content="32"' in portal.news())
+
+    def test_content_image_nocustom_resize(self):
+        portal = self.layer['portal']
+        request = self.layer['request']
+        request.set('ACTUAL_URL', 'http://nohost/plone/news')
+        settings = self.getSettings()
+        settings.content_use_own_image = True
         settings.content_image_size = ''
         self.assertTrue('<meta property="og:image" content="http://nohost/plone/news/image"' in portal.news())
+        self.assertFalse('<meta property="og:image:height"' in portal.news())
+        self.assertFalse('<meta property="og:image:width"' in portal.news())
 
     def test_contentleadimage_support(self):
         portal = self.layer['portal']

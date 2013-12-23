@@ -5,6 +5,9 @@ Changelog
 ------------------
 
 - Dexterity content type support [keul]
+- Display also the modified time if security site say so [keul]
+- Added ``og:image:height`` and ``og:image:width`` when content image
+  (resized) is used [keul]
 
 0.2.1 (2013-07-05)
 ------------------
