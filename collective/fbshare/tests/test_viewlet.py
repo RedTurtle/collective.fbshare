@@ -143,8 +143,9 @@ class TestViewletOnContent(BaseTestCase):
         settings.content_use_own_image = True
         settings.content_image_size = 'icon'
         self.assertTrue('<meta property="og:image" content="http://nohost/plone/news/image_icon"' in portal.news())
-        self.assertTrue('<meta property="og:image:height" content="32"' in portal.news())
-        self.assertTrue('<meta property="og:image:width" content="32"' in portal.news())
+# Feature disabled for now
+#        self.assertTrue('<meta property="og:image:height" content="32"' in portal.news())
+#        self.assertTrue('<meta property="og:image:width" content="32"' in portal.news())
 
     def test_content_image_nocustom_resize(self):
         portal = self.layer['portal']
@@ -154,8 +155,9 @@ class TestViewletOnContent(BaseTestCase):
         settings.content_use_own_image = True
         settings.content_image_size = ''
         self.assertTrue('<meta property="og:image" content="http://nohost/plone/news/image"' in portal.news())
-        self.assertFalse('<meta property="og:image:height"' in portal.news())
-        self.assertFalse('<meta property="og:image:width"' in portal.news())
+# Feature disabled for now
+#        self.assertFalse('<meta property="og:image:height"' in portal.news())
+#        self.assertFalse('<meta property="og:image:width"' in portal.news())
 
     def test_contentleadimage_support(self):
         portal = self.layer['portal']

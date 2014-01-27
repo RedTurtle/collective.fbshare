@@ -60,7 +60,7 @@ class OpenGraphMetaViewlet(SiteOpenGraphMetaViewlet):
     @property
     @memoize
     def content_image_size(self):
-        """Return an width, height dict with content image settings
+        """Return a width, height dict with content image settings
         Return an empty dict if no resize is enabled
         """
         registry = queryUtility(IRegistry)
