@@ -92,7 +92,7 @@ class OpenGraphMetaViewlet(SiteOpenGraphMetaViewlet):
             obj_url = context.absolute_url()
             if hasattr(context, 'getField'):
                 field = self.context.getField('image')
-                if not field and HAS_LEADIMAGE:
+                if field and field.get_size(context) == 0 and HAS_LEADIMAGE:
                     field = context.getField(IMAGE_FIELD_NAME)
                 if field and field.get_size(context) > 0:
                     if img_size:
