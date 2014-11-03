@@ -5,7 +5,7 @@
 <meta property="og:url" content="URL of this object"
       tal:attributes="content context/@@plone_context_state/canonical_object_url" />
 <meta property="og:site_name" content="Name of site hosting article"
-      tal:attributes="content context/@@plone_portal_state/portal_title" />
+      tal:attributes="content context/@@plone_portal_state/navigation_root_title" />
 <tal:image condition="view/share_image">
 <meta property="og:image" content="URL to an image"
       tal:attributes="content view/share_image" />
