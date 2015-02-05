@@ -108,7 +108,7 @@ __ http://pypi.python.org/pypi/plone.z3cform
 Similar product
 ===============
 
-There's another Plone package: that will give you Open Graph support: `collective.opengraph`__
+There's another Plone package that will give you Open Graph support: `collective.opengraph`__
 
 __ http://plone.org/products/collective.opengraph
 
