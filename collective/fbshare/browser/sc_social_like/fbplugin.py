@@ -6,6 +6,6 @@ from sc.social.like.plugins.facebook.browser import PluginView as BasePluginView
 
 class PluginView(BasePluginView):
     """
-    Simply need to register a poor-man versione of the original meta set
+    Simply need to register a poor-man version of the original meta set
     """    
     metadata = ViewPageTemplateFile("metadata.pt")
