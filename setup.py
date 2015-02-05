@@ -10,7 +10,7 @@ setup(name='collective.fbshare',
       description="Provide some additional Open Graph meta tag in your Plone site, "
                   "so share items on Facebook will be simpler",
       long_description=open("README.rst").read() + "\n" +
-                       open(os.path.join("docs", "HISTORY.txt")).read(),
+                       open(os.path.join("docs", "HISTORY.rst")).read(),
       # Get more strings from
       # http://pypi.python.org/pypi?:action=list_classifiers
       classifiers=[
