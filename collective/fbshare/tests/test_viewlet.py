@@ -1,18 +1,16 @@
 # -*- coding: utf-8 -*-
 
 import os.path
-
-from zope.component import getMultiAdapter
-
 from DateTime import DateTime
-
+from base import BaseTestCase
+from collective.fbshare.browser.viewlet import SiteOpenGraphMetaViewlet, OpenGraphMetaViewlet
+from collective.fbshare.testing import FBSHARE_INTEGRATION_TESTING
+from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import logout
+from zope.component import getMultiAdapter
+from zope.interface import alsoProvides
 
-from collective.fbshare.testing import FBSHARE_INTEGRATION_TESTING
-from collective.fbshare.browser.viewlet import SiteOpenGraphMetaViewlet, OpenGraphMetaViewlet
-
-from base import BaseTestCase
 
 class TestViewlet(BaseTestCase):
 
@@ -193,4 +191,17 @@ class TestViewletOnContent(BaseTestCase):
         self.assertTrue('<meta property="article:tag" content="tag 1"' in portal.page())
         self.assertTrue('<meta property="article:tag" content="tag2"' in portal.page())
 
+    def test_sitename_on_page(self):
+        portal = self.layer['portal']
+        request = self.layer['request']
+        request.set('ACTUAL_URL', 'http://nohost/plone/page')
+        self.assertTrue('<meta property="og:site_name" content="Plone site" />' in portal.page())
 
+    def test_sitename_on_navigation_root(self):
+        portal = self.layer['portal']
+        request = self.layer['request']
+        portal.invokeFactory(type_name='Folder', id='folder', title='A subsite')
+        alsoProvides(portal.folder, INavigationRoot)
+        portal.folder.invokeFactory(type_name='Document', id='subpage', title='Another good article')
+        request.set('ACTUAL_URL', 'http://nohost/plone/folder/subpage')
+        self.assertTrue('<meta property="og:site_name" content="A subsite" />' in portal.folder.subpage())
