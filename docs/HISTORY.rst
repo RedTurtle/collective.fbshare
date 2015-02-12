@@ -1,6 +1,16 @@
 Changelog
 =========
 
+0.3.1 (Unreleased)
+------------------
+
+- Updated metadata from sc.social.like with latests
+  changes from version 2.0 (matters only when used).
+  This close `#7`__
+  [keul]
+
+__ https://github.com/RedTurtle/collective.fbshare/issues/7
+
 0.3.0 (2014-01-27)
 ------------------
 
