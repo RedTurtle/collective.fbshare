@@ -81,7 +81,6 @@ class OpenGraphMetaViewlet(SiteOpenGraphMetaViewlet):
     def share_image(self):
         """Return URL to the image to be used for sharing
         """
-        portal_state = getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
         registry = queryUtility(IRegistry)
         settings = registry.forInterface(IFbShareSettings, check=False)
 

@@ -1,20 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from StringIO import StringIO
-
+from base import BaseTestCase
+from collective.fbshare.testing import FBSHARE_INTEGRATION_TESTING
+from zExceptions import NotFound
 from zope.component import getMultiAdapter
 
-from DateTime import DateTime
-
-from zExceptions import NotFound
-
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import logout
-
-from collective.fbshare.testing import FBSHARE_INTEGRATION_TESTING
-from collective.fbshare.browser.viewlet import SiteOpenGraphMetaViewlet, OpenGraphMetaViewlet
-
-from base import BaseTestCase
 
 class TestView(BaseTestCase):
 
@@ -27,13 +18,11 @@ class TestView(BaseTestCase):
                                      name=u"collective.fbshare.default_image")
 
     def test_notfoud(self):
-        portal = self.layer['portal']
         request = self.layer['request']
         request.set('ACTUAL_URL', 'http://nohost/plone')
         self.assertRaises(NotFound, self.view)
 
     def test_image_returned(self):
-        portal = self.layer['portal']
         request = self.layer['request']
         request.set('ACTUAL_URL', 'http://nohost/plone')
         settings = self.getSettings()

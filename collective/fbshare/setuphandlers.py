@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from zope.component import queryUtility
 from Products.CMFCore.utils import getToolByName
-
-from plone.registry.interfaces import IRegistry
-from Products.CMFPlone.utils import safe_unicode
-
 from collective.fbshare import logger
+
 
 PROFILE_ID = 'profile-collective.fbshare:default'
 

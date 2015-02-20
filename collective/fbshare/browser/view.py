@@ -4,7 +4,7 @@ from collective.fbshare.interfaces import IFbShareSettings
 from plone.registry.interfaces import IRegistry
 from Products.Five.browser import BrowserView
 from zExceptions import NotFound
-from zope.component import queryUtility, getMultiAdapter
+from zope.component import queryUtility
 
 
 class ShareDefaultImage(BrowserView):

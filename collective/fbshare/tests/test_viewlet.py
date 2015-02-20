@@ -3,12 +3,10 @@
 import os.path
 from DateTime import DateTime
 from base import BaseTestCase
-from collective.fbshare.browser.viewlet import SiteOpenGraphMetaViewlet, OpenGraphMetaViewlet
 from collective.fbshare.testing import FBSHARE_INTEGRATION_TESTING
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import logout
-from zope.component import getMultiAdapter
 from zope.interface import alsoProvides
 
 
