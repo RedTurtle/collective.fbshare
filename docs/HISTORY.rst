@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.3.1 (Unreleased)
+0.3.1 (2015-02-20)
 ------------------
 
 - Updated metadata from sc.social.like with latests
