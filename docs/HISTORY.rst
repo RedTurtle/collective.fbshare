@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.3.2 (unreleased)
+0.3.2 (2016-04-19)
 ------------------
 
 - Fixes for Plone 5.0 (handle missing portal_properties props and unset lead
