@@ -4,7 +4,9 @@ Changelog
 0.3.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixes for Plone 5.0 (handle missing portal_properties props and unset lead
+  images)
+  [alecm]
 
 
 0.3.1 (2015-02-20)

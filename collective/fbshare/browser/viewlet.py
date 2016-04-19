@@ -89,7 +89,7 @@ class OpenGraphMetaViewlet(SiteOpenGraphMetaViewlet):
             img_size = settings.content_image_size
             context = aq_inner(self.context)
             obj_url = context.absolute_url()
-            if hasattr(context, 'getField'):
+            if getattr(context, 'getField', None):
                 field = self.context.getField('image')
                 if not field and HAS_LEADIMAGE:
                     field = context.getField(IMAGE_FIELD_NAME)
@@ -97,7 +97,7 @@ class OpenGraphMetaViewlet(SiteOpenGraphMetaViewlet):
                     if img_size:
                         return u'%s/%s_%s' % (obj_url, field.getName(), img_size)
                     return u'%s/%s' % (obj_url, field.getName())
-            elif hasattr(context, 'image'):
+            elif getattr(context, 'image', None):
                 # maybe a dexterity content type
                 if context.image.size > 0 and img_size:
                     return u'%s/@@images/image/%s' % (obj_url, img_size)
@@ -113,13 +113,15 @@ class OpenGraphMetaViewlet(SiteOpenGraphMetaViewlet):
     def modified(self):
         tools = getMultiAdapter((self.context, self.request), name=u'plone_tools')
         properties_tool = tools.properties()
-        if properties_tool.site_properties.allowAnonymousViewAbout:
+        if properties_tool.site_properties.getProperty(
+                'allowAnonymousViewAbout', False):
             return self.context.modified() or None
 
     def author(self):
         tools = getMultiAdapter((self.context, self.request), name=u'plone_tools')
         properties_tool = tools.properties()
-        if properties_tool.site_properties.allowAnonymousViewAbout:
+        if properties_tool.site_properties.getProperty(
+                'allowAnonymousViewAbout', False):
             portal_state = getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
             if self.context.Creator():
                 return "%s/author/%s" % (portal_state.portal_url(), self.context.Creator())
