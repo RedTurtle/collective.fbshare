@@ -5,10 +5,13 @@ from Products.CMFCore.interfaces import ISiteRoot
 from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from collective.fbshare.interfaces import IFbShareSettings
+from plone import api
 from plone.app.layout.viewlets import common
+from plone.dexterity.content import IDexterityContent
+from plone.memoize.view import memoize
 from plone.registry.interfaces import IRegistry
 from zope.component import getMultiAdapter, queryUtility
-from plone.memoize.view import memoize
+
 
 HAS_LEADIMAGE = True
 try:
@@ -16,27 +19,56 @@ try:
 except:
     HAS_LEADIMAGE = False
 
+
 class SiteOpenGraphMetaViewlet(common.ViewletBase):
     """OpenGraph share viewlet for site root"""
-    
+
     index = ViewPageTemplateFile("site_opengraph_meta.pt")
 
     def share_image(self):
         """Return URL to the image to be used for sharing
         """
         portal_state = getMultiAdapter((self.context, self.request), name=u'plone_portal_state')
-        
+
         registry = queryUtility(IRegistry)
         settings = registry.forInterface(IFbShareSettings, check=False)
-        if settings.image_to_share==u'site_logo':
+        if settings.image_to_share == u'site_logo':
             portal = self.portal_state.portal()
             logoName = portal.restrictedTraverse('base_properties').logoName
             return "%s/%s" % (portal_state.portal_url(), logoName)
-        
+
         share_image_view = getMultiAdapter((portal_state.portal(), self.request),
                                            name=u'collective.fbshare.default_image')
         if share_image_view.data():
             return "%s/@@collective.fbshare.default_image" % portal_state.portal_url()
+
+    def navigation_root(self):
+        """
+
+        :return:
+        """
+        return api.portal.get_navigation_root(self.context)
+
+    def navigation_root_title(self):
+        """
+
+        :return:
+        """
+        return self.navigation_root().Title()
+
+    def navigation_root_url(self):
+        """
+
+        :return:
+        """
+        return self.navigation_root().absolute_url()
+
+    def navigation_root_description(self):
+        """
+
+        :return:
+        """
+        return self.navigation_root().Description()
 
 
 class OpenGraphMetaViewlet(SiteOpenGraphMetaViewlet):
@@ -44,14 +76,14 @@ class OpenGraphMetaViewlet(SiteOpenGraphMetaViewlet):
 
     index = ViewPageTemplateFile("opengraph_meta.pt")
     site_template = ViewPageTemplateFile("site_opengraph_meta.pt")
-    
+
     def _isPortalDefaultView(self):
         context = self.context
         if ISiteRoot.providedBy(aq_parent(aq_inner(context))):
             putils = getToolByName(context, 'plone_utils')
             return putils.isDefaultPage(context)
         return False
-    
+
     def render(self):
         if self._isPortalDefaultView():
             return self.site_template()
@@ -73,9 +105,9 @@ class OpenGraphMetaViewlet(SiteOpenGraphMetaViewlet):
         if not imaging_properties:
             return {}
         for size_name, size in [x.split(' ') for x in imaging_properties.allowed_sizes]:
-             if size_name==wanted_size:
-                 size = size.split(':')
-                 return {'width': size[0], 'height': size[1]}
+            if size_name == wanted_size:
+                size = size.split(':')
+                return {'width': size[0], 'height': size[1]}
         return {}
 
     def share_image(self):
@@ -89,7 +121,12 @@ class OpenGraphMetaViewlet(SiteOpenGraphMetaViewlet):
             img_size = settings.content_image_size
             context = aq_inner(self.context)
             obj_url = context.absolute_url()
-            if getattr(context, 'getField', None):
+            if IDexterityContent.providedBy(context):
+                # a dexterity content type
+                if getattr(context, 'image', None):
+                    if context.image.size > 0 and img_size:
+                        return u'%s/@@images/image/%s' % (obj_url, img_size)
+            elif getattr(context, 'getField', None):
                 field = self.context.getField('image')
                 if not field and HAS_LEADIMAGE:
                     field = context.getField(IMAGE_FIELD_NAME)
@@ -97,10 +134,6 @@ class OpenGraphMetaViewlet(SiteOpenGraphMetaViewlet):
                     if img_size:
                         return u'%s/%s_%s' % (obj_url, field.getName(), img_size)
                     return u'%s/%s' % (obj_url, field.getName())
-            elif getattr(context, 'image', None):
-                # maybe a dexterity content type
-                if context.image.size > 0 and img_size:
-                    return u'%s/@@images/image/%s' % (obj_url, img_size)
 
         return SiteOpenGraphMetaViewlet.share_image(self)
 
