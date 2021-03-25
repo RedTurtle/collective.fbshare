@@ -4,7 +4,8 @@ Changelog
 0.3.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix call navigation_root instead of portal_state
+- Fix bug with dexterity types and images, the test was not working
 
 
 0.3.2 (2016-04-19)
